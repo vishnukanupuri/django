@@ -102,7 +102,18 @@ class Enrollment(models.Model):
     # Has question content
     # Other fields and methods you would like to design
 class Question(models.Model):
-
+    selected_ids = models.IntegerField(default=0)
+    CHOICE_1 ='A'
+    CHOICE_2 ='B'
+    CHOICE_3 ='C'
+    CHOICE_4 ='D'
+    CHOICE_MODES =[
+        (CHOICE_1,'A'),
+        (CHOICE_2,'B'),
+        (CHOICE_3,'C'),
+        (CHOICE_4,'D')
+    ]
+    choice_set = models.CharField(max_length=5, choices=CHOICE_MODES, default=AUDIT)
     ans_id = models.IntegerField(default=0)
     # Foreign key to lesson
     lesson = models.ForeignKey(Lesson,on_delete=models.CASCADE)
